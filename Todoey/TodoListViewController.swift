@@ -10,7 +10,7 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     
-    let itemArray = ["Primo elemento","Secondo elemento","Terzo elemento"]
+    var itemArray = ["Primo elemento","Secondo elemento","Terzo elemento"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +42,32 @@ class TodoListViewController: UITableViewController {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
     }
-
+    
+    //MARK: - Add New Items
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        //Costruiamo una variabile locale richiamabile anche da dentro la closure
+        var textField = UITextField()
+        
+        //COSTRUISCEALERT CONTROLLER DENTRO CUI STANNO GLI ALERT ACTION
+        let alert = UIAlertController(title: "Add new todoey item", message: "", preferredStyle: .alert)
+        
+        //PULSANTE E RELATIVA SUA AZIONE IN CLOSURE
+        let action = UIAlertAction(title: "Add Item", style: .default, handler: { (action) in
+            //QUI CASCA LA CLOSURE ESEGUITA AL CLIC
+            self.itemArray.append(textField.text!)
+            self.tableView.reloadData()
+        })
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new item"
+            textField = alertTextField
+        }
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+        
+    }
 }
 
