@@ -17,6 +17,11 @@ class TodoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //per caricare i dati salvati in locale con if let per non farlo crashare se per caso non ci fossero i dati
+        if let item = defaults.array(forKey: "TodoListArray") as? [String]{
+            itemArray = item
+        }
     }
 
     //MARK: - TableView Datasource Methods
@@ -59,6 +64,7 @@ class TodoListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default, handler: { (action) in
             //QUI CASCA LA CLOSURE ESEGUITA AL CLIC
             self.itemArray.append(textField.text!)
+            self.defaults.set(self.itemArray, forKey: "TodoListArray")
             self.tableView.reloadData()
         })
         
