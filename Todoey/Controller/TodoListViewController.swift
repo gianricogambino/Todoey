@@ -11,6 +11,8 @@ import UIKit
 class TodoListViewController: UITableViewController {
     
     var itemArray = ["Primo elemento","Secondo elemento","Terzo elemento"]
+    
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
