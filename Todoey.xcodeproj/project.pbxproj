@@ -35,6 +35,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70C74FEA1FE93E3800EF38CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		70C74FEB1FE93E4700EF38CD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				70D7A7D71FE7E00700198F6B /* Main.storyboard */,
+				70D7A7DA1FE7E00700198F6B /* Assets.xcassets */,
+				70D7A7DC1FE7E00700198F6B /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		70C74FEC1FE93E4F00EF38CD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				70D7A7D31FE7E00700198F6B /* AppDelegate.swift */,
+				70D7A7D51FE7E00700198F6B /* TodoListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		70D7A7C71FE7E00700198F6B = {
 			isa = PBXGroup;
 			children = (
@@ -54,11 +80,9 @@
 		70D7A7D21FE7E00700198F6B /* Todoey */ = {
 			isa = PBXGroup;
 			children = (
-				70D7A7D31FE7E00700198F6B /* AppDelegate.swift */,
-				70D7A7D51FE7E00700198F6B /* TodoListViewController.swift */,
-				70D7A7D71FE7E00700198F6B /* Main.storyboard */,
-				70D7A7DA1FE7E00700198F6B /* Assets.xcassets */,
-				70D7A7DC1FE7E00700198F6B /* LaunchScreen.storyboard */,
+				70C74FEC1FE93E4F00EF38CD /* Controller */,
+				70C74FEB1FE93E4700EF38CD /* View */,
+				70C74FEA1FE93E3800EF38CD /* Model */,
 				70D7A7DF1FE7E00700198F6B /* Info.plist */,
 			);
 			path = Todoey;
