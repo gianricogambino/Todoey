@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Item {
+// invece che mettere i due protocolli encodable e decodable ne usiamo uno comune per entrabi
+class Item: Codable {
     
     var title:String = ""
     var done: Bool = false
