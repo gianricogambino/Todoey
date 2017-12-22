@@ -12,6 +12,11 @@ import CoreData
 class TodoListViewController: UITableViewController {
     
     var itemArray = [Item]()
+    var selectedCategory: Category? {
+        didSet {
+            loadItems()
+        }
+    }
     
     //qui andiamo a richiamare il context dichiarato all'interno di AppDelegate nella parentesi
     //context viene usato quando si attiva l'azione addButtonPressed e il metodo saveItems()
@@ -20,9 +25,6 @@ class TodoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        loadItems()
-        
     }
 
     //MARK: - TableView Datasource Methods
@@ -62,6 +64,8 @@ class TodoListViewController: UITableViewController {
             newItem.title = textField.text!
             //nel datamodel abbiamo detto che title e done non sono opzionali se non lo valorizziamo sarà nil e quindi errore   
             newItem.done = false
+            //la parenteCategory è il nome della relazione lato Item tra le due entity
+            newItem.parentCategory = self.selectedCategory
             self.itemArray.append(newItem)
             self.saveItems()
         })
@@ -78,7 +82,6 @@ class TodoListViewController: UITableViewController {
     
     @IBAction func reloadDataButtonPressed(_ sender: UIBarButtonItem) {
         loadItems()
-        tableView.reloadData()
     }
     
     
@@ -92,13 +95,31 @@ class TodoListViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func loadItems() {
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
+    // nella chiamata di funzione assumiamo un valore di default Item.fetchRequest()
+    // che era quello chiamato originariamente  dalla funzione loadItems()
+    //
+    //_________________________________________________vvvvvvvvvvvvvvvvvvv
+    func loadItems(with request:NSFetchRequest<Item> = Item.fetchRequest(),with predicate: NSPredicate? = nil) {
+        
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+        
+        // se il valore passato in predicate è nil allora carica solo la query delle categorie
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+        } else {
+            request.predicate = categoryPredicate
+        }
+        //queste due righe hanno un problema di unwrap potremmo estrarre un valore nil piantando tutto
+        // quindi si usa un if con optional binding per eliminare questo rischio ed eseguire l'unwrap
+//        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,predicate!])
+//        request.predicate = compoundPredicate
+        
         do {
             itemArray = try context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
+        tableView.reloadData()
     }
 }
 
