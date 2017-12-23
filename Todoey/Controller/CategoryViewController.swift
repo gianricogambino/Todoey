@@ -17,7 +17,7 @@ class CategoryViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadCategoryItems()
+        loadCategories()
     }
     
     //MARK: _ Add new categories
@@ -30,8 +30,6 @@ class CategoryViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Category", style: .default, handler: { (action) in
             let newCategory = Category()
             newCategory.name = textField.text!
-            //non serve perché il tipo dati Results è autoupdating
-            //self.categories.append(newCategory)
             self.save(category: newCategory)
         })
         
@@ -68,9 +66,6 @@ class CategoryViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let destinationVC = segue.destination as! TodoListViewController
-        
-        // indexPathsForSelectedRows identifica la riga selezionata
-        // siccome è un valore optional eseguiamo il suo check/unwrap con if let
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedCategory = categories[indexPath.row]
         }
@@ -89,13 +84,8 @@ class CategoryViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func loadCategoryItems() {
+    func loadCategories() {
         categories = realm.objects(Category.self)
-//        do {
-//            categoryArray = try context.fetch(request)
-//        } catch {
-//            print("Error fetching data from context \(error)")
-//        }
         tableView.reloadData()
     }
 }
