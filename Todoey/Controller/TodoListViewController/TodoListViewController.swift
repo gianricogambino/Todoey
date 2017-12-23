@@ -14,7 +14,7 @@ class TodoListViewController: UITableViewController {
     var itemArray = [Item]()
     var selectedCategory: Category? {
         didSet {
-            loadItems()
+            //loadItems()
         }
     }
     
@@ -60,14 +60,14 @@ class TodoListViewController: UITableViewController {
         var textField = UITextField()
         let alert = UIAlertController(title: "Add new todoey item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default, handler: { (action) in
-            let newItem = Item(context: self.context)
-            newItem.title = textField.text!
-            //nel datamodel abbiamo detto che title e done non sono opzionali se non lo valorizziamo sarà nil e quindi errore   
-            newItem.done = false
-            //la parenteCategory è il nome della relazione lato Item tra le due entity
-            newItem.parentCategory = self.selectedCategory
-            self.itemArray.append(newItem)
-            self.saveItems()
+//            let newItem = Item(context: self.context)
+//            newItem.title = textField.text!
+//            //nel datamodel abbiamo detto che title e done non sono opzionali se non lo valorizziamo sarà nil e quindi errore
+//            newItem.done = false
+//            //la parenteCategory è il nome della relazione lato Item tra le due entity
+//            newItem.parentCategory = self.selectedCategory
+//            self.itemArray.append(newItem)
+//            self.saveItems()
         })
         
         alert.addTextField { (alertTextField) in
@@ -81,7 +81,7 @@ class TodoListViewController: UITableViewController {
     }
     
     @IBAction func reloadDataButtonPressed(_ sender: UIBarButtonItem) {
-        loadItems()
+        //loadItems()
     }
     
     
@@ -99,27 +99,27 @@ class TodoListViewController: UITableViewController {
     // che era quello chiamato originariamente  dalla funzione loadItems()
     //
     //_________________________________________________vvvvvvvvvvvvvvvvvvv
-    func loadItems(with request:NSFetchRequest<Item> = Item.fetchRequest(),with predicate: NSPredicate? = nil) {
-        
-        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-        
-        // se il valore passato in predicate è nil allora carica solo la query delle categorie
-        if let additionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
-        } else {
-            request.predicate = categoryPredicate
-        }
-        //queste due righe hanno un problema di unwrap potremmo estrarre un valore nil piantando tutto
-        // quindi si usa un if con optional binding per eliminare questo rischio ed eseguire l'unwrap
-//        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,predicate!])
-//        request.predicate = compoundPredicate
-        
-        do {
-            itemArray = try context.fetch(request)
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
-        tableView.reloadData()
-    }
+//    func loadItems(with request:NSFetchRequest<Item> = Item.fetchRequest(),with predicate: NSPredicate? = nil) {
+//        
+//        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+//        
+//        // se il valore passato in predicate è nil allora carica solo la query delle categorie
+//        if let additionalPredicate = predicate {
+//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+//        } else {
+//            request.predicate = categoryPredicate
+//        }
+//        //queste due righe hanno un problema di unwrap potremmo estrarre un valore nil piantando tutto
+//        // quindi si usa un if con optional binding per eliminare questo rischio ed eseguire l'unwrap
+////        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,predicate!])
+////        request.predicate = compoundPredicate
+//        
+//        do {
+//            itemArray = try context.fetch(request)
+//        } catch {
+//            print("Error fetching data from context \(error)")
+//        }
+//        tableView.reloadData()
+//    }
 }
 
