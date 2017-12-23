@@ -16,4 +16,6 @@ let volume = defaults.float(forKey: "volume")
 let appLastOpen = defaults.object(forKey: "AppLastOpenedByUser")
 let myArray = defaults.array(forKey: "myArray")
 let myDict = defaults.dictionary(forKey: "myDict")
- 
+
+let date = Date()
+print(date)

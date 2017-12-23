@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import CoreData
+import RealmSwift
 
 
 //MARK: - Search bar methods
@@ -16,14 +16,8 @@ import CoreData
 //class SearchBarTodoListViewController:TodoListViewController, UISearchBarDelegate {
 //    
 //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        
-//        let request: NSFetchRequest<Item> = Item.fetchRequest()
-//        
-//        // il format è una sorta di SQL
-//        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-//        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-//        
-//        loadItems(with: request, with: predicate)
+//        todoItems = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!)
+//        tableView.reloadData()
 //    }
 //    
 //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
