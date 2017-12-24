@@ -8,8 +8,9 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
-class CategoryViewController: UITableViewController {
+class CategoryViewController: SwipeTableViewController {
     
     let realm = try! Realm()
     
@@ -23,11 +24,11 @@ class CategoryViewController: UITableViewController {
     //MARK: _ Add new categories
     
     @IBAction func addCategoryButoonPressed(_ sender: UIBarButtonItem) {
-        var textField = UITextField()
-
-        let alert = UIAlertController(title: "Add new Todoey Category", message: "", preferredStyle: .alert)
         
+        var textField = UITextField()
+        let alert = UIAlertController(title: "Add new Todoey Category", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Category", style: .default, handler: { (action) in
+            
             let newCategory = Category()
             newCategory.name = textField.text!
             self.save(category: newCategory)
@@ -50,7 +51,8 @@ class CategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         let category = categories?[indexPath.row]
         cell.textLabel?.text = category?.name ?? "No categories added yet"
         return cell
@@ -69,6 +71,7 @@ class CategoryViewController: UITableViewController {
         let destinationVC = segue.destination as! TodoListViewController
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedCategory = categories?[indexPath.row]
+            print("1-categoria selezionata")
         }
     }
     
@@ -88,5 +91,17 @@ class CategoryViewController: UITableViewController {
     func loadCategories() {
         categories = realm.objects(Category.self)
         tableView.reloadData()
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let swipedCategory = self.categories?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(swipedCategory)
+                }
+            } catch {
+                print("errors deleting category: \(swipedCategory) \(error)")
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@
 		700CE0BA1FEDCD0E004B3401 /* SearchBarTodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700CE0B91FEDCD0E004B3401 /* SearchBarTodoListViewController.swift */; };
 		700CE0BF1FEE64B7004B3401 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700CE0BE1FEE64B7004B3401 /* Item.swift */; };
 		700CE0C11FEE64EF004B3401 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700CE0C01FEE64EF004B3401 /* Category.swift */; };
+		701E22611FEFE8B200FB4FD0 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E22601FEFE8B200FB4FD0 /* SwipeTableViewController.swift */; };
 		70D7A7D41FE7E00700198F6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7A7D31FE7E00700198F6B /* AppDelegate.swift */; };
 		70D7A7D61FE7E00700198F6B /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7A7D51FE7E00700198F6B /* TodoListViewController.swift */; };
 		70D7A7D91FE7E00700198F6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70D7A7D71FE7E00700198F6B /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		700CE0B91FEDCD0E004B3401 /* SearchBarTodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarTodoListViewController.swift; sourceTree = "<group>"; };
 		700CE0BE1FEE64B7004B3401 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		700CE0C01FEE64EF004B3401 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		701E22601FEFE8B200FB4FD0 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		70D7A7D01FE7E00700198F6B /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70D7A7D31FE7E00700198F6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70D7A7D51FE7E00700198F6B /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +62,6 @@
 		700CE0BB1FEDCE8B004B3401 /* TodoListViewController */ = {
 			isa = PBXGroup;
 			children = (
-				70D7A7D51FE7E00700198F6B /* TodoListViewController.swift */,
 				700CE0B91FEDCD0E004B3401 /* SearchBarTodoListViewController.swift */,
 			);
 			path = TodoListViewController;
@@ -87,7 +88,9 @@
 		70C74FEC1FE93E4F00EF38CD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				701E22601FEFE8B200FB4FD0 /* SwipeTableViewController.swift */,
 				70F27C661FED5A3200055D0E /* CategoryViewController.swift */,
+				70D7A7D51FE7E00700198F6B /* TodoListViewController.swift */,
 				700CE0BB1FEDCE8B004B3401 /* TodoListViewController */,
 			);
 			path = Controller;
@@ -220,11 +223,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Todoey/Pods-Todoey-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -274,6 +279,7 @@
 				70F27C671FED5A3200055D0E /* CategoryViewController.swift in Sources */,
 				70D7A7D61FE7E00700198F6B /* TodoListViewController.swift in Sources */,
 				700CE0BA1FEDCD0E004B3401 /* SearchBarTodoListViewController.swift in Sources */,
+				701E22611FEFE8B200FB4FD0 /* SwipeTableViewController.swift in Sources */,
 				700CE0BF1FEE64B7004B3401 /* Item.swift in Sources */,
 				70D7A7D41FE7E00700198F6B /* AppDelegate.swift in Sources */,
 				700CE0C11FEE64EF004B3401 /* Category.swift in Sources */,
